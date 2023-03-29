@@ -9,9 +9,11 @@ public class SpawnEnemy : MonoBehaviour
 
     // references
     private Rigidbody2D rb;
+    private GameManager gameManager;
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>(); // temporary, not good to use Find
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -20,8 +22,11 @@ public class SpawnEnemy : MonoBehaviour
         Move();
     }
 
+    /// <summary>
+    /// Moves the obstacle/enemy to the left
+    /// </summary>
     private void Move()
     {
-        rb.velocity = Vector2.left * speed;
+        rb.velocity = Vector2.left * (speed + gameManager.GetSpeedMultiplier());
     }
 }

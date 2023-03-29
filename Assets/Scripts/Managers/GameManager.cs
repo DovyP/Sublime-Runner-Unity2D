@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Obstacles/Enemies")]
     [SerializeField] private GameObject obstacle;
     [SerializeField] private GameObject[] spawnPoints;
+
+    [Header("Settings")]
     [SerializeField] private float timer;
     [SerializeField] private float timeBetweenSpawns;
+    [SerializeField] private float speedMultiplier;
 
     private void Update()
     {
+        speedMultiplier += Time.deltaTime + 0.1f;
+
         timer += Time.deltaTime;
 
         if(timer > timeBetweenSpawns)
@@ -21,4 +27,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns speed multiplier
+    /// </summary>
+    /// <returns>Speed Multiplier</returns>
+    public float GetSpeedMultiplier()
+    {
+        return speedMultiplier;
+    }
 }
