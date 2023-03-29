@@ -58,8 +58,8 @@ public class Movement : MonoBehaviour
         if (ShouldJump)
         {
             rb.AddForce(Vector2.up * jumpForce);
-            animator.SetBool("isJumping", true);
             animator.SetBool("isRolling", false);
+            animator.SetBool("isJumping", true);
         }
     }
 
