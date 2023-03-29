@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        speedMultiplier += Time.deltaTime + 0.1f;
+        speedMultiplier += Time.deltaTime + 0.01f;
 
         timer += Time.deltaTime;
 
