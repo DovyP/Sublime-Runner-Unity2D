@@ -59,6 +59,7 @@ public class Movement : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce);
             animator.SetBool("isJumping", true);
+            animator.SetBool("isRolling", false);
         }
     }
 
@@ -67,8 +68,8 @@ public class Movement : MonoBehaviour
     /// </summary>
     private void HandleRoll()
     {
-        if (!isGrounded)
-            return;
+        //if (!isGrounded)
+            //return;
 
         if (Input.GetKeyDown(rollKey))
         {
@@ -87,6 +88,7 @@ public class Movement : MonoBehaviour
     private void StartRoll()
     {
         rb.AddForce(Vector2.down * 5f, ForceMode2D.Impulse);
+        animator.SetBool("isJumping", false);
         animator.SetBool("isRolling", true);
     }
 

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
         distance += Time.deltaTime * 0.8f;
 
-        speedMultiplier += Time.deltaTime + 0.005f;
+        speedMultiplier += Time.deltaTime + 0.0005f;
 
         timer += Time.deltaTime;
 
