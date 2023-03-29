@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +12,20 @@ public class GameManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float timer;
     [SerializeField] private float timeBetweenSpawns;
-    [SerializeField] private float speedMultiplier;
+
+    private float speedMultiplier;
+    private float distance;
+
+    // references
+    [SerializeField] private TextMeshProUGUI distanceText;
 
     private void Update()
     {
-        speedMultiplier += Time.deltaTime + 0.01f;
+        distanceText.text = "Distance: " + distance.ToString();
+
+        distance += Time.deltaTime * 0.8f;
+
+        speedMultiplier += Time.deltaTime + 0.005f;
 
         timer += Time.deltaTime;
 

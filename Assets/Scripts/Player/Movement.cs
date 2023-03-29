@@ -99,7 +99,7 @@ public class Movement : MonoBehaviour
     }
 
     /// <summary>
-    /// Changes player state to dead
+    /// Changes player state to dead and restarts the scene
     /// </summary>
     public void Die()
     {
