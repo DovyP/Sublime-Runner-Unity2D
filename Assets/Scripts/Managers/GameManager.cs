@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // distance text
-        distanceText.text = "Distance: " + distance.ToString();
+        distanceText.text = "Distance: " + distance.ToString("N3");
         // distance calculation
         distance += Time.deltaTime * 3f;
         // speed multiplier for the obstacles to become faster overtime
