@@ -13,19 +13,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timer;
     [SerializeField] private float timeBetweenSpawns;
 
+    [Header("Keybinds")]
+    [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
+
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI distanceText;
+    [SerializeField] private GameObject pauseMenu;
+
     private float speedMultiplier;
     private float distance;
-
-    // references
-    [SerializeField] private TextMeshProUGUI distanceText;
+    private bool isPaused = false;
 
     private void Update()
     {
         distanceText.text = "Distance: " + distance.ToString();
 
-        distance += Time.deltaTime * 0.8f;
+        distance += Time.deltaTime * 3f;
 
-        speedMultiplier += Time.deltaTime + 0.0005f;
+        speedMultiplier += Time.deltaTime + 0.00005f;
 
         timer += Time.deltaTime;
 
@@ -35,6 +40,8 @@ public class GameManager : MonoBehaviour
             int _rng = Random.Range(0, 3);
             Instantiate(obstacle, spawnPoints[_rng].transform.position, Quaternion.identity);
         }
+
+        HandleInputs();
     }
 
     /// <summary>
@@ -44,5 +51,27 @@ public class GameManager : MonoBehaviour
     public float GetSpeedMultiplier()
     {
         return speedMultiplier;
+    }
+
+    public void PauseGameMenu()
+    {
+        if (isPaused)
+        {
+            pauseMenu.SetActive(false);
+            isPaused = false;
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+            isPaused = true;
+        }
+    }
+
+    private void HandleInputs()
+    {
+        if (Input.GetKeyDown(pauseKey))
+        {
+            PauseGameMenu();
+        }
     }
 }

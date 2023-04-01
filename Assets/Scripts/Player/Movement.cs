@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
     private Animator animator;
 
     // player state
-    private PlayerState pState;
+    public PlayerState pState;
 
     private void Awake()
     {
@@ -38,6 +38,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+
         pState = PlayerState.Playing;
     }
 
