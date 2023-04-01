@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-
+        // set the state to playing at start
         pState = PlayerState.Playing;
     }
 
@@ -107,7 +107,7 @@ public class Movement : MonoBehaviour
     public void Die()
     {
         pState = PlayerState.Dead;
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
 
     /// <summary>

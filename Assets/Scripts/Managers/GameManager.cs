@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private TextMeshProUGUI distanceText;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Movement movement;
 
     private float speedMultiplier;
     private float distance;
@@ -26,12 +28,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // distance text
         distanceText.text = "Distance: " + distance.ToString();
-
+        // distance calculation
         distance += Time.deltaTime * 3f;
-
+        // speed multiplier for the obstacles to become faster overtime
         speedMultiplier += Time.deltaTime + 0.00005f;
-
+        // timer for spawning obstacles
         timer += Time.deltaTime;
 
         if(timer > timeBetweenSpawns)
@@ -42,6 +45,11 @@ public class GameManager : MonoBehaviour
         }
 
         HandleInputs();
+
+        if (movement.pState == PlayerState.Dead)
+        {
+            RestartGame();
+        }
     }
 
     /// <summary>
@@ -53,7 +61,18 @@ public class GameManager : MonoBehaviour
         return speedMultiplier;
     }
 
-    public void PauseGameMenu()
+    /// <summary>
+    /// Restart the game
+    /// </summary>
+    private void RestartGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    /// <summary>
+    /// Pause/Unpause the game depending if it's already paused or not
+    /// </summary>
+    public void PauseGame()
     {
         if (isPaused)
         {
@@ -67,11 +86,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles player inputs
+    /// </summary>
     private void HandleInputs()
     {
         if (Input.GetKeyDown(pauseKey))
         {
-            PauseGameMenu();
+            PauseGame();
         }
     }
 }
